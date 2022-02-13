@@ -32,6 +32,7 @@ class MessageThread(
         fetch = FetchType.EAGER
     )
     var messages: MutableList<Message> = mutableListOf()
+
 ) {
 
 }
