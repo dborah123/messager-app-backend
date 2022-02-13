@@ -1,5 +1,7 @@
 package com.example.messagingapp.person
 
+import com.example.messagingapp.messagethread.MessageThread
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -11,17 +13,17 @@ class Person(
     val id: Long? = null,
     var firstName: String,
     var lastName: String,
-//    @JsonIgnore
-//    @ManyToMany(
-//        mappedBy = "people",
-//        fetch = FetchType.LAZY
-//    )
-//    var threads: MutableList<Thread> = mutableListOf(),
-//    @OneToMany(
-//        cascade = [CascadeType.ALL],
-//        fetch = FetchType.EAGER
-//    )
-//    var contacts: MutableList<Person> = mutableListOf()
+    @JsonIgnore
+    @ManyToMany(
+        mappedBy = "people",
+        fetch = FetchType.LAZY
+    )
+    val threads: MutableSet<MessageThread> = mutableSetOf(),
+    @OneToMany(
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.EAGER
+    )
+    var contacts: MutableList<Person> = mutableListOf()
 ) {
 
 }
