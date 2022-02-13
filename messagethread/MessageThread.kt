@@ -1,6 +1,7 @@
 package com.example.messagingapp.messagethread
 
 import com.example.messagingapp.message.Message
+import com.example.messagingapp.person.Person
 import javax.persistence.*
 
 @Entity
@@ -16,17 +17,18 @@ class MessageThread(
         strategy = GenerationType.SEQUENCE,
         generator = "messagethread_sequence"
     )
-    var id: Long? = null,
+    val id: Long? = null,
 
-//    @ManyToMany(
-//       fetch = FetchType.LAZY
-//    )
-//    @JoinTable(
-//        name = "people_threads",
-//        joinColumns = [JoinColumn(name = "thread_id")],
-//        inverseJoinColumns = [JoinColumn(name = "person_id")]
-//    )
-//    val people: MutableSet<Person> = mutableSetOf(),
+    @ManyToMany(
+       fetch = FetchType.LAZY
+    )
+    @JoinTable(
+        name = "people_threads",
+        joinColumns = [JoinColumn(name = "thread_id")],
+        inverseJoinColumns = [JoinColumn(name = "person_id")]
+    )
+    val people: MutableSet<Person> = mutableSetOf(),
+
     @OneToMany(
         cascade = [CascadeType.ALL],
         fetch = FetchType.EAGER
