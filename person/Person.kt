@@ -8,8 +8,15 @@ import javax.persistence.*
 @Table(name = "person")
 class Person(
     @Id
-    @SequenceGenerator(name = "person_sequence", sequenceName = "person_sequence",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_sequence")
+    @SequenceGenerator(
+        name = "person_sequence",
+        sequenceName = "person_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "person_sequence"
+    )
     val id: Long? = null,
     var firstName: String,
     var lastName: String,
